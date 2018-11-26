@@ -21,6 +21,20 @@ class PositionsController < ApplicationController
     render :json => position
   end
 
+  def less_x
+    position = Position.new
+    position.x = @position.x - 1
+    position.save
+    render :json => position
+  end
+
+  def less_y
+    position = Position.new
+    position.y = @position.y - 1
+    position.save
+    render :json => position
+  end
+
   def get_last
     @position = Position.last
     if !@position
