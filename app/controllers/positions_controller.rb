@@ -10,13 +10,15 @@ class PositionsController < ApplicationController
   def more_x
     position = Position.new
     position.x = @position.x + 1
-    render :json => position.save
+    position.save
+    render :json => position
   end
 
   def more_y
     position = Position.new
     position.y = @position.y + 1
-    render :json => position.save
+    position.save
+    render :json => position
   end
 
   def get_last
