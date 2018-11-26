@@ -2,7 +2,7 @@
 lock "~> 3.11.0"
 
 set :application, "tcp-benchmark"
-set :repo_url, "git@github.com/CypressXt/Tcp-Benchmark.git"
+set :repo_url, "git@github.com:CypressXt/Tcp-Benchmark.git"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
