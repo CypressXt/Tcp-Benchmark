@@ -12,12 +12,11 @@ class PositionsController < ApplicationController
     position.x = @position.x + 1
     if position.save
       serialized_data = ActiveModelSerializers::Adapter::Json.new(
-        ConversationSerializer.new(position)
+        PositionSerializer.new(position)
       ).serializable_hash
       ActionCable.server.broadcast 'positions_channel', serialized_data
       head :ok
     end
-    render :json => position
   end
 
   def more_y
@@ -25,12 +24,11 @@ class PositionsController < ApplicationController
     position.y = @position.y + 1
     if position.save
       serialized_data = ActiveModelSerializers::Adapter::Json.new(
-        ConversationSerializer.new(position)
+        PositionSerializer.new(position)
       ).serializable_hash
       ActionCable.server.broadcast 'positions_channel', serialized_data
       head :ok
     end
-    render :json => position
   end
 
   def less_x
@@ -38,12 +36,11 @@ class PositionsController < ApplicationController
     position.x = @position.x - 1
     if position.save
       serialized_data = ActiveModelSerializers::Adapter::Json.new(
-        ConversationSerializer.new(position)
+        PositionSerializer.new(position)
       ).serializable_hash
       ActionCable.server.broadcast 'positions_channel', serialized_data
       head :ok
     end
-    render :json => position
   end
 
   def less_y
@@ -51,12 +48,11 @@ class PositionsController < ApplicationController
     position.y = @position.y - 1
     if position.save
       serialized_data = ActiveModelSerializers::Adapter::Json.new(
-        ConversationSerializer.new(position)
+        PositionSerializer.new(position)
       ).serializable_hash
       ActionCable.server.broadcast 'positions_channel', serialized_data
       head :ok
     end
-    render :json => position
   end
 
   def get_last
