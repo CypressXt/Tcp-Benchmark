@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<meta charset="utf-8" />
+<title>WebSocket Test</title>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<script language="javascript" type="text/javascript">
+
+  var wsUri = "ws://rubyprodlike/cable";
+  var channel = "PositionsChannel"
+  var output;
+
+  function init()
+  {
+    output = document.getElementById("output");
+    testWebSocket();
+  }
+
+  function testWebSocket()
+  {
+    websocket = new WebSocket(wsUri);
+    websocket.onopen = function(evt) { onOpen(evt) };
+    websocket.onclose = function(evt) { onClose(evt) };
+    websocket.onmessage = function(evt) { onMessage(evt) };
+    websocket.onerror = function(evt) { onError(evt) };
+  }
+
+  function onOpen(evt)
+  {
+    writeToScreen("CONNECTED");
+    subchannel = JSON.stringify({"command": "subscribe","identifier":"{\"channel\":\""+channel+"\"}"});
+    doSend(subchannel);
+  }
+
+  function onClose(evt)
+  {
+    writeToScreen("DISCONNECTED");
+  }
+
+  function onMessage(evt)
+  {
+    message = JSON.parse(evt.data)
+    //console.log(message.message.position);
+    if (message.type != "ping"){
+      writeToScreen('<span style="color: blue;">RESPONSE: ' + JSON.stringify(message) +'</span>');
+    }
+    if (message.hasOwnProperty("message") && message.message.hasOwnProperty("position")){
+      moveProgress(message.message.position);
+    }
+  }
+
+  function onError(evt)
+  {
+    writeToScreen('<span style="color: red;">ERROR:</span> ' + evt.data);
+  }
+
+  function doSend(message)
+  {
+    writeToScreen("SENT: " + message);
+    websocket.send(message);
+  }
+
+  function writeToScreen(message)
+  {
+    var pre = document.createElement("p");
+    pre.style.wordWrap = "break-word";
+    pre.innerHTML = message;
+    output.appendChild(pre);
+  }
+
+  function moveProgress(position){
+    x = position.x;
+    y = position.y;
+    progressX = document.getElementById("progress-x");
+    progressY = document.getElementById("progress-y");
+    progressX.style.width =x+"px";
+    progressY.style.width =y+"px";
+  }
+
+  window.addEventListener("load", init, false);
+
+</script>
+
+<h2>WebSocket Test</h2>
+X:
+<div class="w3-border">
+  <div id="progress-x" class="w3-grey" style="height:24px;width:0%"></div>
+</div>
+
+Y:
+<div class="w3-border">
+  <div id="progress-y" class="w3-grey" style="height:24px;width:0%"></div>
+</div>
+<div id="output"></div>
