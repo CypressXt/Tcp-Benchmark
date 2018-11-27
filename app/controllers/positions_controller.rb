@@ -2,6 +2,9 @@ class PositionsController < ApplicationController
   before_action :get_last, only: [:last, :more_x, :more_y, :less_x, :less_y]
   skip_before_action :verify_authenticity_token
 
+  def root
+    render 'frontend'
+  end
 
   def last
     render :json => @position
