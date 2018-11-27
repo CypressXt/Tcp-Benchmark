@@ -1,5 +1,5 @@
 class PositionsController < ApplicationController
-  before_action :get_last, only: [:last, :more_x, :more_y]
+  before_action :get_last, only: [:last, :more_x, :more_y, :less_x, :less_y]
   skip_before_action :verify_authenticity_token
 
 
@@ -62,6 +62,12 @@ class PositionsController < ApplicationController
       @position.x = 0
       @position.y = 0
       @position.save
+    end
+    if @position.x == nil
+      @position.x = 0
+    end
+    if @position.y == nil
+      @position.y = 0
     end
   end
 
