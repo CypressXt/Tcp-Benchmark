@@ -23,7 +23,7 @@ set :deploy_to, "/var/www/tcp-benchmark"
 
 # Default value for :linked_files is []
 # append :linked_files, "config/database.yml"
-append :linked_files, "config/database.yml", 'config/secrets.yml'
+append :linked_files, "config/database.yml", 'config/secrets.yml', 'config/elastic_apm.yml'
 
 
 # Default value for linked_dirs is []
