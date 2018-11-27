@@ -10,6 +10,7 @@ class PositionsController < ApplicationController
   def more_x
     position = Position.new
     position.x = @position.x + 1
+    position.y = @position.y
     if position.save
       serialized_data = ActiveModelSerializers::Adapter::Json.new(
         PositionSerializer.new(position)
@@ -21,6 +22,7 @@ class PositionsController < ApplicationController
 
   def more_y
     position = Position.new
+    position.x = @position.x
     position.y = @position.y + 1
     if position.save
       serialized_data = ActiveModelSerializers::Adapter::Json.new(
@@ -34,6 +36,7 @@ class PositionsController < ApplicationController
   def less_x
     position = Position.new
     position.x = @position.x - 1
+    position.y = @position.y
     if position.save
       serialized_data = ActiveModelSerializers::Adapter::Json.new(
         PositionSerializer.new(position)
@@ -45,6 +48,7 @@ class PositionsController < ApplicationController
 
   def less_y
     position = Position.new
+    position.x = @position.x
     position.y = @position.y - 1
     if position.save
       serialized_data = ActiveModelSerializers::Adapter::Json.new(
