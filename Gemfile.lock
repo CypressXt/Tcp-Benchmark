@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/elastic/apm-agent-ruby.git
+  revision: 97a08dfe860c3fe93bc8f5ef59e1687b2b6e0d57
+  specs:
+    elastic-apm (2.0.1)
+      concurrent-ruby (~> 1.0)
+      http (>= 3.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -91,9 +99,6 @@ GEM
     crass (1.0.4)
     domain_name (0.5.20180417)
       unf (>= 0.0.5, < 1.0.0)
-    elastic-apm (2.0.1)
-      concurrent-ruby (~> 1.0)
-      http (>= 3.0)
     erubi (1.7.1)
     execjs (2.7.0)
     ffi (1.9.25)
@@ -238,7 +243,7 @@ DEPENDENCIES
   capistrano3-puma
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
-  elastic-apm
+  elastic-apm!
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
   mysql2
