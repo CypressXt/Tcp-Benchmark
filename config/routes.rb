@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   post 'positions/more_y' => "positions#more_y"
   post 'positions/less_x' => "positions#less_x"
   post 'positions/less_y' => "positions#less_y"
-
+  mount ActionCable.server => '/cable'
 end
